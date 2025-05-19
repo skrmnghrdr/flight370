@@ -427,7 +427,7 @@ def update_aircraft_position(aircraft):
 
     # Update position based on heading
 
-    heading_rad = math.radians(aircraft['heading'])
+    heading_rad = aircraft['heading']
 
     aircraft['lat'] += math.cos(heading_rad) * speed_deg_per_sec
 
@@ -444,8 +444,8 @@ def update_aircraft_position(aircraft):
     return aircraft
 
 
-
-def send_position_reports(aircraft_list, host='localhost', port=30001):
+#ERROR HERE HOLY SHIT PLEASE FIX IT
+def send_position_reports(args, aircraft_list, host='localhost', port=30001):
 
     """Send position reports for aircraft to dump1090"""
 
@@ -608,7 +608,7 @@ def main():
     # Generate initial aircraft
     aircraft_list = [generate_aircraft(args) for _ in range(args.aircraft)]
     # Start sending data
-    send_position_reports(aircraft_list, args.host, args.port)
+    send_position_reports(aircraft_list, args.host, args.port, args)
 
 if __name__ == "__main__":
 
